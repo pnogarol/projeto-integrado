@@ -1,0 +1,88 @@
+-- phpMyAdmin SQL Dump
+-- version 4.9.0.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Tempo de geração: 12-Nov-2019 às 01:43
+-- Versão do servidor: 10.3.16-MariaDB
+-- versão do PHP: 7.3.6
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Banco de dados: `projeto-integrado`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tb_cliente`
+--
+
+CREATE TABLE `tb_cliente` (
+  `cdCliente` int(4) NOT NULL COMMENT 'Código do Cliente',
+  `cpfCnpjCliente` int(14) DEFAULT NULL COMMENT 'CPF ou CNPJ do Cliente',
+  `cdInscricao` int(10) DEFAULT NULL COMMENT 'Inscrição Municipal',
+  `nmEmpresa` varchar(100) DEFAULT NULL COMMENT 'Nome Empresa',
+  `nmFantasia` varchar(100) DEFAULT NULL COMMENT 'Nome Fantasia Empresa',
+  `logrTpEndereco` varchar(10) DEFAULT NULL COMMENT 'Tipo de Logradouro',
+  `logrNome` varchar(100) DEFAULT NULL COMMENT 'Logradouro',
+  `logrNumero` varchar(5) DEFAULT NULL COMMENT 'Número Logradouro',
+  `logrComplemento` varchar(100) DEFAULT NULL COMMENT 'Complemento',
+  `logrBairro` varchar(100) DEFAULT NULL COMMENT 'Bairro',
+  `logrCidade` varchar(100) DEFAULT NULL COMMENT 'Cidade',
+  `logrEstado` varchar(2) DEFAULT NULL COMMENT 'Estado',
+  `logrCEP` int(8) DEFAULT NULL COMMENT 'CEP',
+  `cdCidade` int(5) DEFAULT NULL COMMENT 'código da cidade',
+  `campoSuporte` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tb_login`
+--
+
+CREATE TABLE `tb_login` (
+  `cdCliente` int(11) NOT NULL,
+  `dsLogin` varchar(10) NOT NULL,
+  `dsSenha` varchar(12) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `tb_login`
+--
+
+INSERT INTO `tb_login` (`cdCliente`, `dsLogin`, `dsSenha`, `timestamp`) VALUES
+(1, 'root', 'admin', '2019-11-12 00:42:10');
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices para tabela `tb_cliente`
+--
+ALTER TABLE `tb_cliente`
+  ADD PRIMARY KEY (`cdCliente`);
+
+--
+-- Índices para tabela `tb_login`
+--
+ALTER TABLE `tb_login`
+  ADD PRIMARY KEY (`cdCliente`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
